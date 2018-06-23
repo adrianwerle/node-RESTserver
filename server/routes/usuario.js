@@ -9,7 +9,8 @@ const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticac
 const app = express();
 
 
-app.get('/usuario', verificaToken, function(req, res) {
+app.get('/usuario', verificaToken, (req, res) => {
+
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -104,7 +105,10 @@ app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, res) 
 
 app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, res) {
 
+
     let id = req.params.id;
+
+    // Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
 
     let cambiaEstado = {
         estado: false
@@ -117,7 +121,7 @@ app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, re
                 ok: false,
                 err
             });
-        }
+        };
 
         if (!usuarioBorrado) {
             return res.status(400).json({
