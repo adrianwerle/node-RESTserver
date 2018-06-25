@@ -13,11 +13,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 // ============================
 //  Vencimiento del Token
 // ============================
-// 60 segundos
-// 60 minutos
-// 24 horas
-// 30 días
-process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD_TOKEN = '2d';
 
 
 // ============================
@@ -40,4 +36,4 @@ process.env.URLDB = urlDB;
 // ============================
 //  Google Client ID
 // ============================
-process.env.CLIENT_ID = process.env.CLIENT_ID || '219758474264-vh1bibcphgvbc32km508lubtqkanikf1.apps.googleusercontent.com';
+process.env.CLIENT_ID = process.env.CLIENT_ID || '457933301042-dgl5nda11v715foolulcol0012tj8d2l.apps.googleusercontent.com';
