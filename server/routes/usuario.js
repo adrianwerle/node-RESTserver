@@ -1,6 +1,6 @@
 const express = require('express');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const _ = require('underscore');
 
 const Usuario = require('../models/usuario');
@@ -46,14 +46,16 @@ app.get('/usuario', verificaToken, (req, res) => {
 
 });
 
+//app.post('/usuario', function(req, res) {
 app.post('/usuario', [verificaToken, verificaAdmin_Role], function(req, res) {
 
     let body = req.body;
+    let salt = bcrypt.genSaltSync(10);
 
     let usuario = new Usuario({
         nombre: body.nombre,
         email: body.email,
-        password: bcrypt.hashSync(body.password, 10),
+        password: bcrypt.hashSync(body.password, salt),
         role: body.role
     });
 
@@ -91,8 +93,6 @@ app.put('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, res) 
                 err
             });
         }
-
-
 
         res.json({
             ok: true,
